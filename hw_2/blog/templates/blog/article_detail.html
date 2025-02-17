@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ article.title }}</title>
+</head>
+<body>
+    <h1>{{ article.title }}</h1>
+    <p><strong>Author:</strong> {{ article.author }}</p>
+    <p>{{ article.text }}</p>
+    <a href="{% url 'get_articles' %}">Back to articles list</a>
+</body>
+</html>
