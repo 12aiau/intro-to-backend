@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Edit Todo List{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Edit Todo List</h2>
+    <form action="{% url 'todo_list_edit' id=todo_list.id %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a href="/todo-lists" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

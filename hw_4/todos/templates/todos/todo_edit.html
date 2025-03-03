@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Edit Todo{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Edit Todo</h2>
+    <form action="/todos/{{ todo.id }}/edit" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}  {# Django автоматически покажет чекбокс для статуса #}
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a href="/todo-lists/{{ todo.todo_list.id }}" class="btn btn-secondary">Cancel</a>
+    </form>
+    
+</div>
+{% endblock %}
