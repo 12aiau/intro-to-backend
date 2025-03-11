@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}My Todos{% endblock %}
+
+{% block content %}
+<h2>My Todos</h2>
+<a href="{% url 'create_todo' %}" class="btn btn-success mb-3">Add New Todo</a>
+<ul class="list-group">
+    {% for todo in todos %}
+        <li class="list-group-item">
+            <a href="{% url 'todo_detail' todo.id %}">{{ todo.title }}</a>
+            <span class="badge bg-{{ 'success' if todo.status else 'warning' }}">{{ todo.status|yesno:"Done,Pending" }}</span>
+            <a href="{% url 'delete_todo' todo.id %}" class="btn btn-danger btn-sm float-end">Delete</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
