@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}{{ post.title }}{% endblock %}
+{% block content %}
+<h2>{{ post.title }}</h2>
+<p>{{ post.content }}</p>
+<p class="text-muted">Автор: {{ post.author.username }} | {{ post.created_at }}</p>
+
+{% if user == post.author %}
+<a href="{% url 'post_edit' post.id %}" class="btn btn-warning">Редактировать</a>
+<a href="{% url 'post_delete' post.id %}" class="btn btn-danger">Удалить</a>
+{% endif %}
+
+<hr>
+<h4>Комментарии</h4>
+{% for comment in comments %}
+<div class="border p-2 mb-2">
+    <p>{{ comment.text }}</p>
+    <small class="text-muted">Автор: {{ comment.author.username }} | {{ comment.created_at }}</small>
+    {% if user == comment.author %}
+    <div>
+        <a href="{% url 'comment_edit' post.id comment.id %}" class="btn btn-sm btn-outline-warning">✎</a>
+        <a href="{% url 'comment_delete' post.id comment.id %}" class="btn btn-sm btn-outline-danger">🗑</a>
+    </div>
+    {% endif %}
+</div>
+{% empty %}
+<p>Комментариев пока нет.</p>
+{% endfor %}
+
+<a href="{% url 'comment_add' post.id %}" class="btn btn-success mt-3">Добавить комментарий</a>
+{% endblock %}

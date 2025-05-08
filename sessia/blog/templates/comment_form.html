@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Комментарий{% endblock %}
+{% block content %}
+<h2>Комментарий к посту: "{{ post.title }}"</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Сохранить</button>
+</form>
+<a href="{% url 'post_detail' post.id %}" class="btn btn-secondary mt-2">Назад</a>
+{% endblock %}
